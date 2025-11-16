@@ -1,5 +1,6 @@
 <h1>Tambah Transaksi Stok</h1>
 <a href="{{ route('transaksi_stok.index') }}">Kembali ke Daftar Transaksi</a>
+<br><br>
 
 @if($errors->any())
     <ul style="color:red">
@@ -11,28 +12,29 @@
 
 <form action="{{ route('transaksi_stok.store') }}" method="POST">
     @csrf
+
     <p>
-        <label>Barang:</label>
+        <label>Barang:</label><br>
         <select name="id_barang" required>
             <option value="">-- Pilih Barang --</option>
             @foreach($barangs as $barang)
-                <option value="{{ $barang->id_barang }}">{{ $barang->nama }}</option>
+                <option value="{{ $barang->id_barang }}">{{ $barang->barang }}</option>
             @endforeach
         </select>
     </p>
 
     <p>
-        <label>Pegawai:</label>
+        <label>Pegawai:</label><br>
         <select name="id_pegawai" required>
             <option value="">-- Pilih Pegawai --</option>
             @foreach($pegawais as $pegawai)
-                <option value="{{ $pegawai->id_pegawai }}">{{ $pegawai->nama }}</option>
+                <option value="{{ $pegawai->id_pegawai }}">{{ $pegawai->pegawai }}</option>
             @endforeach
         </select>
     </p>
 
     <p>
-        <label>Transaksi:</label>
+        <label>Transaksi:</label><br>
         <select name="transaksi" required>
             <option value="">-- Pilih --</option>
             <option value="masuk">Masuk</option>
@@ -41,19 +43,19 @@
     </p>
 
     <p>
-        <label>Jumlah:</label>
+        <label>Jumlah:</label><br>
         <input type="number" name="jumlah" required>
     </p>
 
     <p>
-        <label>Keterangan:</label>
+        <label>Keterangan:</label><br>
         <textarea name="keterangan" required></textarea>
     </p>
 
     <p>
-        <label>Pemasok:</label>
+        <label>Pemasok (opsional):</label><br>
         <select name="id_pemasok">
-            <option value="">-- Pilih Pemasok (opsional) --</option>
+            <option value="">-- Pilih Pemasok --</option>
             @foreach($pemasoks as $pemasok)
                 <option value="{{ $pemasok->id_pemasok }}">{{ $pemasok->nama }}</option>
             @endforeach

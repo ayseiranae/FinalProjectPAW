@@ -1,5 +1,6 @@
 <h1>Edit Transaksi Stok</h1>
 <a href="{{ route('transaksi_stok.index') }}">Kembali ke Daftar Transaksi</a>
+<br><br>
 
 @if($errors->any())
     <ul style="color:red">
@@ -12,13 +13,14 @@
 <form action="{{ route('transaksi_stok.update', $transaksi->id_transaksi) }}" method="POST">
     @csrf
     @method('PUT')
+
     <p>
         <label>Barang:</label>
         <select name="id_barang" required>
             <option value="">-- Pilih Barang --</option>
             @foreach($barangs as $barang)
                 <option value="{{ $barang->id_barang }}" {{ $transaksi->id_barang == $barang->id_barang ? 'selected' : '' }}>
-                    {{ $barang->nama }}
+                    {{ $barang->barang }}
                 </option>
             @endforeach
         </select>
@@ -30,7 +32,7 @@
             <option value="">-- Pilih Pegawai --</option>
             @foreach($pegawais as $pegawai)
                 <option value="{{ $pegawai->id_pegawai }}" {{ $transaksi->id_pegawai == $pegawai->id_pegawai ? 'selected' : '' }}>
-                    {{ $pegawai->nama }}
+                    {{ $pegawai->pegawai }}
                 </option>
             @endforeach
         </select>
@@ -57,7 +59,7 @@
     <p>
         <label>Pemasok:</label>
         <select name="id_pemasok">
-            <option value="">-- Pilih Pemasok (opsional) --</option>
+            <option value="">-- Pilih Pemasok --</option>
             @foreach($pemasoks as $pemasok)
                 <option value="{{ $pemasok->id_pemasok }}" {{ $transaksi->id_pemasok == $pemasok->id_pemasok ? 'selected' : '' }}>
                     {{ $pemasok->nama }}

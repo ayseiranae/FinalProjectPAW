@@ -1,5 +1,6 @@
 <h1>Daftar Transaksi Stok</h1>
 <a href="{{ route('transaksi_stok.create') }}">Tambah Transaksi</a>
+<br><br>
 
 @if(session('success'))
     <p style="color:green">{{ session('success') }}</p>
@@ -22,9 +23,9 @@
         @foreach($transaksis as $t)
         <tr>
             <td>{{ $t->id_transaksi }}</td>
-            <td>{{ $t->barang->nama ?? '-' }}</td>
-            <td>{{ $t->pegawai->nama ?? '-' }}</td>
-            <td>{{ $t->transaksi }}</td>
+            <td>{{ $t->barang->barang ?? '-' }}</td>
+            <td>{{ $t->pegawai->pegawai ?? '-' }}</td>
+            <td>{{ ucfirst($t->transaksi) }}</td>
             <td>{{ $t->jumlah }}</td>
             <td>{{ $t->keterangan }}</td>
             <td>{{ $t->pemasok->nama ?? '-' }}</td>

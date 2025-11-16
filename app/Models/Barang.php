@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -17,4 +16,14 @@ class Barang extends Model
         'satuan',
         'id_pemasok',
     ];
+
+    public function kategori()
+    {
+        return $this->belongsTo(\App\Models\Kategori::class, 'id_kategori');
+    }
+
+    public function pemasok()
+    {
+        return $this->belongsTo(\App\Models\Pemasok::class, 'id_pemasok');
+    }
 }

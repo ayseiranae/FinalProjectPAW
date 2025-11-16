@@ -21,20 +21,27 @@ class PegawaiController extends Controller
     }
 
     public function store(Request $r)
-    {
-        Pegawai::create([
-            'id_jabatan' => $r->id_jabatan,
-            'pegawai'    => $r->pegawai,
-            'username'   => $r->username,
-            'password'   => bcrypt($r->password) 
-        ]);
+{
+    $r->validate([
+        'pegawai' => 'required',
+        'username' => 'required',
+        'password' => 'required',
+        'id_jabatan' => 'required|exists:jabatan,id_jabatan'
+    ]);
 
-        return redirect()->route('pegawai.index');
-    }
+    Pegawai::create([
+        'id_jabatan' => $r->id_jabatan,
+        'pegawai'    => $r->pegawai,
+        'username'   => $r->username,
+        'password'   => bcrypt($r->password)
+    ]);
+
+    return redirect()->route('pegawai.index');
+}
 
     public function edit($id)
     {
-        $pegawai = Pegawai::find($id);
+        $pegawai = Pegawai::findOrFail($id); 
         $jabatan = Jabatan::all();
         return view('pegawai.edit', compact('pegawai', 'jabatan'));
     }
@@ -51,7 +58,7 @@ class PegawaiController extends Controller
             $data['password'] = bcrypt($r->password);
         }
 
-        Pegawai::find($id)->update($data);
+        Pegawai::findOrFail($id)->update($data);
 
         return redirect()->route('pegawai.index');
     }

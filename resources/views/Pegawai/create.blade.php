@@ -3,22 +3,24 @@
 <form method="POST" action="{{ route('pegawai.store') }}">
     @csrf
 
-    Nama Pegawai:
-    <input type="text" name="pegawai" required><br>
+    Nama Pegawai:<br>
+    <input type="text" name="pegawai" required><br><br>
 
-    Username:
-    <input type="text" name="username" required><br>
+    Username:<br>
+    <input type="text" name="username" required><br><br>
 
-    Password:
-    <input type="password" name="password" required><br>
+    Password:<br>
+    <input type="password" name="password" required><br><br>
 
-    Jabatan:
+
+    Jabatan: <br>
     <select name="id_jabatan" required>
-        <option value="">-- Pilih Jabatan --</option>
-        @foreach ($jabatan as $j)
-            <option value="{{ $j->id_jabatan }}">{{ $j->jabatan }}</option>
-        @endforeach
-    </select><br>
+    <option value="">-- Pilih Jabatan --</option>
+    @foreach($jabatan as $j)
+        <option value="{{ $j->id_jabatan }}">{{ $j->jabatan }}</option>
+    @endforeach
+    </select>
+<br><br>
 
     <button type="submit">Simpan</button>
 </form>

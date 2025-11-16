@@ -15,7 +15,10 @@ class BarangController extends Controller
 
     public function create()
     {
-        return view('barang.create');
+        $kategori = \App\Models\Kategori::all();
+        $pemasok = \App\Models\Pemasok::all();
+
+        return view('barang.create', compact('kategori', 'pemasok'));
     }
 
     public function store(Request $r)
@@ -34,7 +37,10 @@ class BarangController extends Controller
     public function edit($id)
     {
         $barang = Barang::find($id);
-        return view('barang.edit', compact('barang'));
+        $kategori = \App\Models\Kategori::all();
+        $pemasok = \App\Models\Pemasok::all();
+
+        return view('barang.edit', compact('barang', 'kategori', 'pemasok'));
     }
 
     public function update(Request $r, $id)
